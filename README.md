@@ -1,53 +1,72 @@
-# MERN CRUD Auth
+# Documentación Backend - CRUD Authenticated and tasks
 
-Este proyecto es una implementación básica de una aplicación CRUD (Crear, Leer, Actualizar, Eliminar) con autenticación utilizando el stack MERN (MongoDB, Express, React, Node.js).
+Este proyecto utiliza varias librerías para facilitar el desarrollo y la implementación de funcionalidades específicas en el backend, construido con Node.js y Express. A continuación, se detallan las librerías utilizadas y sus roles dentro del proyecto:
 
-## Dependencias
+## Librerías Implementadas
 
-### Dependencias Principales
+### bcryptjs
 
-1. **bcryptjs**: `^2.4.3`
-   - **Uso**: Para encriptar contraseñas antes de almacenarlas en la base de datos y para comparar contraseñas en el proceso de inicio de sesión.
+- **Uso**: Utilizada para encriptar contraseñas antes de almacenarlas en la base de datos y para comparar contraseñas en el proceso de inicio de sesión.
+- **Código**: No aplicable directamente, se usa en los controladores de usuario.
 
-2. **cookie-parser**: `^1.4.6`
-   - **Uso**: Para analizar y manejar cookies, lo cual es esencial para gestionar las sesiones de los usuarios.
+### cookie-parser
 
-3. **express**: `^4.19.2`
-   - **Uso**: Para configurar el servidor, manejar las rutas y gestionar middleware en la aplicación.
+- **Uso**: Para analizar y manejar cookies, esencial para gestionar las sesiones de los usuarios.
+- **Código**: `app.use(cookieParser())`
 
-4. **jsonwebtoken**: `^9.0.2`
-   - **Uso**: Para generar y verificar tokens JWT usados en la autenticación de usuarios.
+### express
 
-5. **mongoose**: `^8.5.1`
-   - **Uso**: Para interactuar con MongoDB, definir esquemas y gestionar relaciones de datos.
+- **Uso**: Framework principal para configurar el servidor, manejar las rutas y gestionar middleware.
+- **Código**: `const app = express()`
 
-6. **morgan**: `^1.10.0`
-   - **Uso**: Para registrar las solicitudes HTTP al servidor, ayudando en la depuración y monitoreo.
+### jsonwebtoken
 
-7. **zod**: `^3.23.8`
-   - **Uso**: Para validar y analizar datos de entrada, asegurando que los datos cumplan con el formato esperado.
+- **Uso**: Para generar y verificar tokens JWT usados en la autenticación de usuarios.
+- **Código**: Utilizado en los controladores de autenticación para generar y verificar tokens.
 
-### Dependencias de Desarrollo
+### mongoose
 
-1. **nodemon**: `^3.1.4`
-   - **Uso**: Para reiniciar automáticamente el servidor cuando se detecten cambios en los archivos durante el desarrollo.
+- **Uso**: Para interactuar con MongoDB, definir esquemas y gestionar relaciones de datos.
+- **Código**: Se utiliza en todo el código que interactúa con la base de datos.
 
-2. **standart**: `^6.1.0`
-   - **Uso**: Para asegurar que el código cumpla con un estilo consistente y para detectar y corregir errores comunes de programación.
+### morgan
 
-## Instalación
+- **Uso**: Para registrar las solicitudes HTTP al servidor, ayudando en la depuración y monitoreo.
+- **Código**: `app.use(morgan('dev'))`
 
-Para instalar las dependencias del proyecto, ejecuta el siguiente comando:
+### zod
 
-```bash
-pnpm install
-```
+- **Uso**: Para validar y analizar datos de entrada, asegurando que los datos cumplan con el formato esperado.
+- **Código**: Utilizado en los middleware de validación de esquemas.
 
-```bash
-pnpm start
-```
+## Rutas Disponibles
 
-## PORT Backend:
+El backend expone varias rutas para la autenticación y gestión de tareas, protegidas mediante middleware de autenticación cuando es necesario.
 
-> [!TIP]
-> http://localhost:4000
+### Autenticación
+
+- **Registro**: POST `/api/register`
+  - Registra un nuevo usuario.
+- **Login**: POST `/api/login`
+  - Autentica a un usuario y devuelve un token.
+- **Logout**: POST `/api/logout`
+  - Cierra la sesión del usuario.
+- **Verificación**: GET `/api/verify`
+  - Verifica el token del usuario.
+- **Perfil**: GET `/api/profile`
+  - Obtiene la información del perfil del usuario autenticado.
+
+### Tareas
+
+- **Listar Tareas**: GET `/api/tasks`
+  - Obtiene todas las tareas del usuario autenticado.
+- **Obtener Tarea**: GET `/api/tasks/:id`
+  - Obtiene una tarea específica por su ID.
+- **Crear Tarea**: POST `/api/tasks`
+  - Crea una nueva tarea.
+- **Actualizar Tarea**: PUT `/api/tasks/:id`
+  - Actualiza una tarea existente.
+- **Eliminar Tarea**: DELETE `/api/tasks/:id`
+  - Elimina una tarea existente.
+
+Para interactuar con estas rutas, se puede utilizar herramientas como Postman o integrarlas en el frontend del proyecto.
