@@ -12,9 +12,9 @@ function TasksPage() {
     return <h1 className='text-white text-2xl'>No tasks</h1>
 
   return (
-    <div className='grid grid-cols-3 gap-2'>
-      {tasks.map((task, index) => (
-        <TaskCard key={index} task={task} />
+    <div className='grid sm:grid-cols-2 md:grid-cols-3 gap-2'>
+      {tasks.map((task) => (
+        <TaskCard task={task} key={task._id} />
       ))}
     </div>
   )
