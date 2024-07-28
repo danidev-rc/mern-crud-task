@@ -16,8 +16,8 @@ function App() {
     <AuthProvider>
       <TaskProvider>
         <BrowserRouter>
-          <main className='container mx-auto px-10'>
-            <Navbar />
+          <Navbar />
+          <main className='container mx-auto py-20'>
             <Routes>
               <Route path='/' element={<HomePage />} />
               <Route path='/login' element={<LoginPage />} />
