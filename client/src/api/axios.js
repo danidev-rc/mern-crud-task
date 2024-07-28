@@ -1,7 +1,7 @@
  import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: 'https://back-task-3d72.onrender.com/api',
+  baseURL: 'http://localhost:4000/api',
   withCredentials: true
 })
 
